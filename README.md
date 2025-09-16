@@ -20,30 +20,16 @@ fraud-detection-system/
 │   │   └── data_generator.py        # Synthetic fraud data generator
 │   ├── 📁 models/                   # ML model training and inference
 │   │   ├── __init__.py
-│   │   ├── train_model.py           # Model training pipeline
-│   │   ├── inference.py             # Real-time inference
-│   │   └── explainability.py        # SHAP/LIME explanations
-│   ├── 📁 api/                      # FastAPI application
-│   │   ├── __init__.py
-│   │   ├── main.py                  # API server
-│   │   ├── models.py                # Pydantic models
-│   │   └── routes/                  # API endpoints
+│   │   ├── model_trainer.py          # Model training pipeline
+│   │   ├── model_predictor.py       # Real-time inference
+|   │   ├── model_evaluator.py       # Model evaluation pipeline
+│   │   └── shap_interpreter.py      # SHAP/LIME explanations
 │   ├── 📁 features/                 # Feature engineering
 │   │   ├── __init__.py
 │   │   └── feature_engineering.py   # Feature creation pipeline
-│   ├── 📁 utils/                    # Utility functions
-│   │   ├── __init__.py
-│   │   └── helpers.py               # Common utilities
-│   └── 📁 monitoring/               # Model monitoring
-│       ├── __init__.py
-│       └── monitoring.py            # Performance tracking
-├── 📁 data/                         # Generated datasets
-├── 📁 tests/                        # Unit and integration tests
-├── 📁 docs/                         # Documentation
 ├── 📄 main.py                       # Main entry point
 ├── 📄 requirements.txt              # Python dependencies
 ├── 📄 README.md                     # This file
-└── 📄 architecture_diagram.md       # System architecture
 ```
 
 ## 🚀 Quick Start
@@ -80,14 +66,7 @@ This will create:
 
 ```bash
 # Train traditional ML model
-python src/models/train_model.py
-```
-
-### 4. Start API Server
-
-```bash
-# Start FastAPI server
-python src/api/main.py
+python train_model.py
 ```
 
 ## 📊 Dataset Overview
@@ -116,47 +95,16 @@ The synthetic dataset includes:
 ## 🔧 Technology Stack
 
 ### **ML/AI:**
-- **Traditional ML**: Scikit-learn, XGBoost, SHAP, LIME
-- **LLM/Agents**: LangChain, OpenAI API, RAG pipelines
-- **Vector DB**: Pinecone, Weaviate (for future LLM integration)
-
-### **Backend:**
-- **API**: FastAPI, Pydantic, Uvicorn
-- **Database**: PostgreSQL, Redis
-- **ORM**: SQLAlchemy
-
-### **DevOps:**
-- **Containerization**: Docker, Kubernetes
-- **Monitoring**: Prometheus, Grafana, ELK Stack
-- **CI/CD**: GitHub Actions, Helm, Terraform
+- **ML**: Scikit-learn, XGBoost, SHAP, LIME
 
 ## 🎯 Cursor AI Impact
 
-This project showcases how **Cursor AI** accelerates development across all domains:
+This project showcases how **Cursor AI** accelerates development in ML domain:
 
 ### **For ML Engineers:**
 - **Complete ML Pipeline**: Automated model training, feature engineering, explainability
 - **Production Code**: Production-ready inference, monitoring, deployment
 - **Best Practices**: Proper project structure, testing, documentation
-
-### **For Business Analysts:**
-- **Automated Dashboards**: Real-time fraud analytics, compliance reporting
-- **Cost Analysis**: ROI calculations, business impact metrics
-- **Data Visualization**: Interactive charts, trend analysis
-
-### **For DevOps Engineers:**
-- **Infrastructure as Code**: Complete deployment automation
-- **CI/CD Pipelines**: Automated testing, deployment, monitoring
-- **Security**: Secrets management, network policies, encryption
-
-## 📈 Next Steps
-
-1. **Feature Engineering**: Implement advanced feature creation
-2. **Model Training**: Train and evaluate multiple ML models
-3. **API Development**: Build FastAPI endpoints for real-time inference
-4. **LLM Integration**: Add LangChain agents and RAG pipelines
-5. **Monitoring**: Implement model performance tracking
-6. **Deployment**: Containerize and deploy to production
 
 ## 🤝 Contributing
 
