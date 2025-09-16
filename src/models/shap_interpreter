@@ -1,0 +1,33 @@
+import pandas as pd
+import shap
+import joblib
+import os
+import matplotlib.pyplot as plt
+
+# Load the input features (not the output with predictions)
+input_path = "data/prediction_input.csv"
+X = pd.read_csv(input_path)
+
+# Load the trained model (e.g., gradient boosting)
+models_dir = "models"
+model_files = [f for f in os.listdir(models_dir) if f.startswith("gradient") and f.endswith(".joblib")]
+assert model_files, "No gradient boosting model found!"
+model_path = os.path.join(models_dir, sorted(model_files)[-1])
+model = joblib.load(model_path)
+
+# Create SHAP explainer (TreeExplainer for tree models)
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X)
+
+# Global feature importance plot
+plt.figure()
+shap.summary_plot(shap_values, X, show=False)
+plt.tight_layout()
+plt.savefig("data/shap_summary_plot.png")
+print("Saved global SHAP summary plot to data/shap_summary_plot.png")
+
+# Local explanation for the first prediction
+plt.figure()
+shap.force_plot(explainer.expected_value, shap_values[0,:], X.iloc[0,:], matplotlib=True, show=False)
+plt.savefig("data/shap_force_plot_row0.png")
+print("Saved SHAP force plot for first row to data/shap_force_plot_row0.png")
